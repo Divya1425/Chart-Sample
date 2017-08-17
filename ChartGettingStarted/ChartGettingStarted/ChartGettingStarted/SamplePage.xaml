@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:local="clr-namespace:ChartGettingStarted;assembly=ChartGettingStarted"
+             x:Class="ChartGettingStarted.SamplePage">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="template">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="{Binding XValue}"/>
+                    <StackLayout Orientation="Horizontal" Padding="3" Spacing="0" BackgroundColor="Maroon" HorizontalOptions="Start">
+                        <Label Text="{Binding YValue}" TextColor="White"/>
+                        <Label Text="%" TextColor="White"/>
+                    </StackLayout>
+                </StackLayout>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <chart:SfChart x:Name="Chart">
+
+        <chart:SfChart.PrimaryAxis>
+            <chart:DateTimeAxis x:Name="dateTimeAxis"  Minimum="5/1/2015" Maximum="8/1/2015">
+
+                <chart:DateTimeAxis.LabelStyle>
+                    <chart:ChartAxisLabelStyle LabelFormat="MMM/dd"/>
+                </chart:DateTimeAxis.LabelStyle>
+
+            </chart:DateTimeAxis>
+        </chart:SfChart.PrimaryAxis>
+
+        <chart:SfChart.SecondaryAxis>
+            <chart:NumericalAxis/>
+        </chart:SfChart.SecondaryAxis>
+
+        <chart:SfChart.Series>
+            <chart:PolarSeries x:Name="series" ItemsSource="{Binding Data}" DataMarkerPosition="OutsideExtended">
+                <!--<chart:PieSeries.DataMarker>
+                    <chart:ChartDataMarker ShowLabel="True" LabelTemplate="{StaticResource template}"/>
+                </chart:PieSeries.DataMarker>-->
+            </chart:PolarSeries>
+        </chart:SfChart.Series>
+
+        <chart:SfChart.ChartBehaviors>
+            <chart:ChartZoomPanBehavior/>
+        </chart:SfChart.ChartBehaviors>
+    </chart:SfChart>
+</ContentPage>
